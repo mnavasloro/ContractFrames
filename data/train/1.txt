@@ -1,0 +1,4 @@
+'personA' sold this_real_estate to 'personB' at the price of 200000 dollars by contract0 on 1/January/2018.
+But 'personB' rescinded contract0 because 'person B' is a minor on 1/March/2018.
+However, this rescission was made because 'personA' threatened 'personB' on 1/February/2018.
+It is because 'person A' would like to sell this_real_estate to 'person C' in the higher price.

@@ -1,0 +1,175 @@
+# DATES ENGLISH
+# Example to add "DATEPRP" as ner tag, and ISO code as the normalized tag for strings matching a color
+
+# Case insensitive pattern matching (see java.util.regex.Pattern flags)
+
+# Map variable names to annotation keys
+event = { type: "CLASS", value: "oeg.contractFrames.contractEvents$ContractEventTagAnnotation" }
+ 
+ 
+ner = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$NamedEntityTagAnnotation" }
+normalized = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$NormalizedNamedEntityTagAnnotation" }
+tokens = { type: "CLASS", value: "edu.stanford.nlp.ling.CoreAnnotations$TokensAnnotation" }
+
+
+ENV.defaults["stage"] = 1
+
+# https://prowritingaid.com/en/Collocation/Dictionary/?word=contract
+# http://www.freecollocation.com/search?word=contract (OXFORD)
+
+#  "tender for" : "establish",
+#  "enter into" : "establish",
+#  "bid for" : "establish",
+
+
+# https://www.translegal.com/lesson/7035
+# Should I add "Accord and satisfaction" and "Release"?
+
+
+
+# Define ruleType to be over tokens
+ENV.defaults["ruleType"] = "tokens"
+
+#####################
+# Purchase - buy
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"buy"} | {lemma:"purchase"} | {lemma:"acquire"} | {lemma:"obtain"} | {lemma:"obtain"}] ),
+  action: ( Annotate($0, "event", "purchasebuy") ) ,
+  stage : 1  }
+  
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"acquisition"} | {lemma:"acquirement"}] ),
+  action: ( Annotate($0, "event", "purchasebuy") ) ,
+  stage : 1  }
+  
+#####################
+# Purchase - sell
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"sell"} | {lemma:"vend"} | {lemma:"obtain"}] ),
+  action: ( Annotate($0, "event", "purchasesell") ) ,
+  stage : 1  }
+  
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"sale"} ] ),
+  action: ( Annotate($0, "event", "purchasesell") ) ,
+  stage : 1  }
+  
+  
+#####################
+# Duress - threaten
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"threaten"} | {lemma:"menace"} | {lemma:"intimidate"} | {lemma:"browbeat"} | {lemma:"bully"} | {lemma:"pressurize"} | {lemma:"pressure"} | {lemma:"terrorize"} | {lemma:"frighten"} | {lemma:"scare"} | {lemma:"harass"} | {lemma:"obsess"}] ),
+  action: ( Annotate($0, "event", "threaten") ) ,
+  stage : 1  }
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"duress"}] ),
+  action: ( Annotate($0, "event", "duress") ) ,
+  stage : 1  }  
+  
+
+  
+#####################
+# Contract
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"contract"} | {lemma:/contract([a-z]|\d+)/}] ),
+  action: ( Annotate($0, "ner", "CONTRACT") ) ,
+  stage : 1  }
+
+#####################
+# Parts
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:/[Pp]art[A-Za-z]/} | {lemma:/[Pp]erson[A-Za-z]/}] ),
+  action: ( Annotate($0, "ner", "PERSON") ) ,
+  stage : 1  }  
+  
+#####################
+# Verbs
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"establish"} | {lemma:"validate"} | {lemma:"bind"}] ),
+  action: ( Annotate($0, "event", "establish") ) ,
+  stage : 1  } 
+  
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"set"}] /up/),
+  action: ( Annotate($0, "event", "establish") ) ,
+  stage : 1  } 
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"repudiate"} | {lemma:"break"} | {lemma:"terminate"} | {lemma:"end"} | {lemma:"rescind"} | {lemma:"conclude"} | {lemma:"expire"} | {lemma:"finish"} | {lemma:"revoke"} | {lemma:"cancel"}] ),
+  action: ( Annotate($0, "event", "end") ) ,
+  stage : 1  }
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"enter"}] /into/ (/force/|/agreement/) ),
+  action: ( Annotate($0, "event", "establish") ) ,
+  stage : 1  } 
+  
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"tender"}] /for/ ),
+  action: ( Annotate($0, "event", "establish") ) ,
+  stage : 1  } 
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"bid"}] /for/ ),
+  action: ( Annotate($0, "event", "establish") ) ,
+  stage : 1  } 
+
+#####################
+# Nouns
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"establishment"} | {lemma:"validation"} | {lemma:"making"} | {lemma:"binding"} | {lemma:"agreement"}] ),
+  action: ( Annotate($0, "event", "nounEstablish") ) ,
+  stage : 1  } 
+  
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"repudiation"} | {lemma:"breaking"} | {lemma:"termination"} | {lemma:"revocation"} | {lemma:"ending"} | {lemma:"rescission"} | {lemma:"conclusion"} | {lemma:"finishing"} | {lemma:"finishing"} | {lemma:"cancellation"} | {lemma:"cancelation"}  | {lemma:"withdrawal"}] ),
+  action: ( Annotate($0, "event", "nounEnd") ) ,
+  stage : 1  }  
+
+
+#####################
+# Compound
+#####################
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"make"} | {lemma:"sign"} | {lemma:"agree"} | {lemma:"accord"}] [{tag:"IN"}]? [{tag:"DT"}]? ([{event:"nounEnd"}])),
+  action: ( Annotate($0, "event", "end") ) ,
+  stage : 2  } 
+  
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"make"} | {lemma:"sign"} | {lemma:"agree"} | {lemma:"accord"}] [{tag:"IN"}]? [{tag:"DT"}]? ([{event:"nounEstablish"}])),
+  action: ( Annotate($0, "event", "establish") ) ,
+  stage : 2  }
+  
+{ ruleType:   "tokens",
+  pattern: (( [{lemma:"make"} | {lemma:"sign"} | {lemma:"agree"} | {lemma:"accord"}]) [{tag:"IN"}]? [{tag:"DT"}]? [{ner:"CONTRACT"}]),
+  action: ( Annotate($1, "event", "establish") ) ,
+  stage : 2  }
+
+  # NOT SURE ABOUT THIS, BETTER KEEP ESTABLISH?
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"make"} | {lemma:"sign"} | {lemma:"agree"} | {lemma:"accord"}] [{tag:"IN"}]? [{tag:"DT"}]? ([{event:"purchasebuy"}])),
+  action: ( Annotate($0, "event", "establish") ) ,
+#  action: ( Annotate($0, "event", "purchasebuy") ) ,
+  stage : 2  } 
+
+{ ruleType:   "tokens",
+  pattern: ( [{lemma:"make"} | {lemma:"sign"} | {lemma:"agree"} | {lemma:"accord"}] [{tag:"IN"}]? [{tag:"DT"}]? ([{event:"purchasesell"}])),
+  action: ( Annotate($0, "event", "establish") ) ,
+#    action: ( Annotate($0, "event", "purchasesell") ) ,
+  stage : 2  } 

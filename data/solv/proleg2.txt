@@ -1,0 +1,4 @@
+agreement_of_purchase_contract(A,B,L,price,2018 year 04 month 01 day,contract).
+manifestation_fact(rescission(contract),A,B,2018 year 05 month 01 day).
+fact_of_duress(B,A,rescission(contract),2018 year 04 month 15 day).
+manifestation_fact(rescission(rescission(contract)),A,B,2018 year 06 month 01 day).

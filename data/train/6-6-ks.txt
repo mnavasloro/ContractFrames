@@ -1,0 +1,4 @@
+'personA' and 'personB' reached agreement that 'personB' sells 'this_real_estate' to
+'personA'  on January 1, 2018. But 'personA' canceled this agreement on 1 February 2018
+because 'personA' is a minor. This cancellation was made since 'personB' obsessed 'personA'.
+It is because 'personB' wants to sell this_real_estate to 'personC' at the higher price. 

@@ -1,0 +1,3 @@
+'personA' set up a contract to buy 'this_real_estate' from 'personB' on January 1, 2018.
+But 'personA' canceled this agreement on 1 March 2018 since 'personA' is a minor.
+This cancellation is due to 'personB' obsessing 'personA' on 1 February 2018 because 'personB' wants to sell 'this_real_estate' to 'personC' at a higher price. 

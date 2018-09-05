@@ -1,0 +1,4 @@
+minor(personA).
+agreement_of_purchase_contract(personA,personB,this_real_estate,price,2018 year 01 month 01 day,contract).
+manifestation_fact(rescission(contract),personA,personB,2018 year 03 month 01 day).
+fact_of_duress(personB,personA,rescission(contract),2018 year 02 month 01 day).

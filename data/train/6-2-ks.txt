@@ -1,0 +1,4 @@
+'personA' sold this_real_estate to 'personB' by 'contract0'  on 1 January 2018.
+However, 'person B' is a minor and so 'person B' canceled 'contract0' on 1 March 2018.
+However, this withdrawal was done because 'person A' threatened 'person B' on 1 February 2018.
+This is because 'personA' wanted to sell this_real_estate to 'personC' at a higher price. 

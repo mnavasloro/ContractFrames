@@ -1,0 +1,1 @@
+agreement_of_purchase_contract(B,A,L,20000,2017 year 10 month 13 day,C).

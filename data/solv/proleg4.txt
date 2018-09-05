@@ -1,0 +1,3 @@
+agreement_of_purchase_contract(A,C,H,02,2018 year 03 month 01 day,).
+manifestation_fact(rescission(contract),C,A,OFFSET P2M).
+fact_of_duress(C,A,rescission(contract),).

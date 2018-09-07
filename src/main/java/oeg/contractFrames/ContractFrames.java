@@ -1158,7 +1158,7 @@ public class ContractFrames {
         }
         // We recover the items' original names
         for(String k : refItem.keySet()){
-            input = input.replaceAll(k, refItem.get(k));
+            input = input.replaceAll(k, refItem.get(k)); 
         }
         // We recover the parts' original names
         

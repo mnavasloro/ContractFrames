@@ -1,37 +1,76 @@
 @prefix : <https://mnavasloro.github.io/ContractFrames/> .
 @prefix cf: <https://mnavasloro.github.io/ContractFrames/> .
+@prefix mco: <urn:mpeg:mpeg21:mco:core:2012#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix provo: <https://www.w3.org/TR/prov-o/> .
-@prefix mco: <urn:mpeg:mpeg21:mco:core:2012#> .
 @base <https://mnavasloro.github.io/ContractFrames/> .
 
 <https://mnavasloro.github.io/ContractFrames/> rdf:type owl:Ontology ;
                                                 <http://purl.org/dc/terms/date> "2018-07-23" ;
-                                                <http://purl.org/dc/terms/title> "Contract Frames Ontology" ;
                                                 <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                                                <http://purl.org/dc/terms/title> "Contract Workflow Ontology" ;
                                                 <http://purl.org/dc/terms/creator> "Víctor Rodríguez-Doncel" ,
                                                                                    "María Navas-Loro" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://mnavasloro.github.io/ContractFrames/relatedContract
+cf:relatedContract rdf:type owl:ObjectProperty ;
+                   rdfs:domain cf:ContractEvent ;
+                   rdfs:range mco:Contract ;
+                   rdfs:comment "Relates a contract-related event with the contract" .
+
 
 #################################################################
 #    Classes
 #################################################################
 
-mco:Contract rdf:type owl:Class ;
- owl:sameAs <http://www.estrellaproject.org/lkif-core/norm.owl#Contract> ;
- rdfs:comment "Contract, much as mco:Contract or LKIF contract, as defined by Hoekstra et al. 2007." .
+###  https://mnavasloro.github.io/ContractFrames/Agreement
+cf:Agreement rdf:type owl:Class ;
+             rdfs:subClassOf cf:ContractEvent ;
+             rdfs:comment "Contract-related event by which a contract is agreed. " .
+
 
 ###  https://mnavasloro.github.io/ContractFrames/AgreementOfPurchaseContract
 cf:AgreementOfPurchaseContract rdf:type owl:Class ;
+                               rdfs:subClassOf cf:Agreement ;
                                rdfs:comment "This is a PROLEG variable" .
+
+
+###  https://mnavasloro.github.io/ContractFrames/Archival
+cf:Archival rdf:type owl:Class ;
+            rdfs:subClassOf cf:ContractEvent ;
+            rdfs:comment "Contract-related event by which a contract is archived. " .
+
+
+###  https://mnavasloro.github.io/ContractFrames/Authoring
+cf:Authoring rdf:type owl:Class ;
+             rdfs:subClassOf cf:ContractEvent ;
+             rdfs:comment "Contract-related event by which a contract is authored. " .
 
 
 ###  https://mnavasloro.github.io/ContractFrames/ContractEvent
 cf:ContractEvent rdf:type owl:Class ;
-  rdfs:subClassOf provo:Activity .
+                 rdfs:subClassOf provo:Activity .
+
+
+###  https://mnavasloro.github.io/ContractFrames/Execution
+cf:Execution rdf:type owl:Class ;
+             rdfs:subClassOf cf:ContractEvent ;
+             rdfs:comment "Contract-related event by which a contract is executed. " .
+
+
+###  https://mnavasloro.github.io/ContractFrames/Expired
+cf:Expired rdf:type owl:Class ;
+           rdfs:subClassOf cf:ContractEvent ,
+                           cf:Termination ;
+           rdfs:comment "Contract-related event by which a contract is expired. " .
 
 
 ###  https://mnavasloro.github.io/ContractFrames/FactOfDuress
@@ -39,15 +78,62 @@ cf:FactOfDuress rdf:type owl:Class ;
                 rdfs:comment "This is a PROLEG variable" .
 
 
+###  https://mnavasloro.github.io/ContractFrames/Manifestation
+cf:Manifestation rdf:type owl:Class ;
+                 rdfs:comment "Manifestation of a certain information from one entity to another entity" .
+
+
 ###  https://mnavasloro.github.io/ContractFrames/ManifestationFact
 cf:ManifestationFact rdf:type owl:Class ;
                      rdfs:comment "This is a PROLEG variable" .
 
 
+###  https://mnavasloro.github.io/ContractFrames/Negotiation
+cf:Negotiation rdf:type owl:Class ;
+               rdfs:subClassOf cf:ContractEvent ,
+                               cf:Negotiation ;
+               rdfs:comment "Contract-related event by which a contract is negotiated. This is a PROLEG variable." .
+
+
 ###  https://mnavasloro.github.io/ContractFrames/Rescission
 cf:Rescission rdf:type owl:Class ;
-              rdfs:subClassOf cf:ContractEvent ;
-              rdfs:comment "This is a PROLEG variable" .
+              rdfs:subClassOf cf:ContractEvent ,
+                              cf:Termination ;
+              rdfs:comment "Contract-related event by which a contract is rescinded. This is a PROLEG variable." .
+
+
+###  https://mnavasloro.github.io/ContractFrames/Termination
+cf:Termination rdf:type owl:Class ;
+               rdfs:subClassOf cf:ContractEvent ;
+               rdfs:comment "Contract-related event by which a contract is terminated. " .
+
+
+###  https://www.w3.org/TR/prov-o/Activity
+provo:Activity rdf:type owl:Class .
+
+
+###  urn:mpeg:mpeg21:mco:core:2012#Contract
+mco:Contract rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.estrellaproject.org/lkif-core/norm.owl#Contract
+<http://www.estrellaproject.org/lkif-core/norm.owl#Contract> rdf:type owl:NamedIndividual ;
+                                                             owl:sameAs mco:Contract .
+
+
+###  urn:mpeg:mpeg21:mco:core:2012#Contract
+mco:Contract rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+mco:Contract rdfs:comment "Contract, much as mco:Contract or LKIF contract, as defined by Hoekstra et al. 2007." .
 
 
 ###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

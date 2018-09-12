@@ -81,7 +81,9 @@ public class ContractFrames {
     }
 
     /**
-     *
+     * Initialization routines.
+     * Initializes Stanford Core NLP library.
+     * Sets up a pipeline.
      */
     public void init() {
 

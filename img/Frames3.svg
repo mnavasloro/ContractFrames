@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generado por Microsoft Visio, SVG Export Frames3.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="9.23089in" height="4.65671in"
+		viewBox="0 0 664.624 335.283" xml:space="preserve" color-interpolation-filters="sRGB" class="st15">
+	<v:documentProperties v:langID="3082" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:val="VT0(1):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#ffffff;fill-opacity:0.7;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+		.st2 {fill:#000000;font-family:Times New Roman;font-size:1.16666em;font-weight:bold}
+		.st3 {font-size:1em}
+		.st4 {fill:#ffffff;fill-opacity:0.82;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+		.st5 {fill:#ffffff;fill-opacity:0.84;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.25}
+		.st6 {marker-start:url(#mrkr5-18);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st7 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.22935779816514}
+		.st8 {fill:#ffffff;fill-opacity:0.78;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st9 {fill:#000000;font-family:Times New Roman;font-size:1.16666em}
+		.st10 {fill:#ffffff;fill-opacity:0.7;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st11 {marker-end:url(#mrkr5-51);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st12 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st13 {fill:#ffffff;fill-opacity:0.7;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st14 {marker-start:url(#mrkr5-18);stroke:#000000;stroke-dasharray:11.25,6.75;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st15 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend5">
+			<path d="M 2 1 L 0 0 L 1.98117 -0.993387 C 1.67173 -0.364515 1.67301 0.372641 1.98465 1.00043 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr5-18" class="st7" v:arrowType="5" v:arrowSize="2" v:setback="7.15" refX="7.15" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend5" transform="scale(4.36) "/>
+		</marker>
+		<marker id="mrkr5-51" class="st7" v:arrowType="5" v:arrowSize="2" v:setback="7.63" refX="-7.63" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend5" transform="scale(-4.36,-4.36) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Página-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<v:layer v:name="Conector" v:index="0"/>
+		<g id="shape2-1" v:mID="2" v:groupContext="shape" transform="translate(429.399,-192.184)">
+			<title>Hoja.2</title>
+			<desc>Rescission Frame</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="308.205" width="93.55" height="54.1567"/>
+			<ellipse cx="46.7717" cy="308.205" rx="46.7717" ry="27.0783" class="st1"/>
+			<text x="16.05" y="304" class="st2" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Rescission <tspan
+						x="26.95" dy="1.2em" class="st3">Frame</tspan></text>		</g>
+		<g id="shape3-5" v:mID="3" v:groupContext="shape" transform="translate(429.399,-81.334)">
+			<title>Hoja.3</title>
+			<desc>Duress Frame</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="308.205" width="93.55" height="54.1567"/>
+			<ellipse cx="46.7717" cy="308.205" rx="46.7717" ry="27.0783" class="st4"/>
+			<text x="26.16" y="304" class="st2" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Duress    <tspan
+						x="26.95" dy="1.2em" class="st3">Frame</tspan></text>		</g>
+		<g id="shape5-9" v:mID="5" v:groupContext="shape" transform="translate(160.157,-134.62)">
+			<title>Hoja.5</title>
+			<desc>Purchase Frame</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="308.205" width="93.55" height="54.1567"/>
+			<ellipse cx="46.7717" cy="308.205" rx="46.7717" ry="27.0783" class="st5"/>
+			<text x="19.17" y="304" class="st2" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Purchase<v:newlineChar/><tspan
+						x="26.95" dy="1.2em" class="st3">Frame</tspan></text>		</g>
+		<g id="shape7-13" v:mID="7" v:groupContext="shape" v:layerMember="0" transform="translate(483.257,-135.491)">
+			<title>Conector dinámico.7</title>
+			<path d="M-7.09 329.92 L-7.09 329.56 L-7.09 278.59" class="st6"/>
+		</g>
+		<g id="shape10-19" v:mID="10" v:groupContext="shape" transform="translate(429.399,-279.162)">
+			<title>Hoja.10</title>
+			<desc>Manifester</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st8"/>
+			<text x="16.45" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Manifester</text>		</g>
+		<g id="shape11-22" v:mID="11" v:groupContext="shape" v:layerMember="0" transform="translate(469.084,-279.162)">
+			<title>Conector dinámico.11</title>
+			<path d="M7.09 340.65 L7.09 341.01 L7.09 368.11" class="st6"/>
+		</g>
+		<g id="shape12-27" v:mID="12" v:groupContext="shape" transform="translate(528.611,-255.515)">
+			<title>Hoja.12</title>
+			<desc>Manifestee</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st8"/>
+			<text x="15.68" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Manifestee</text>		</g>
+		<g id="shape13-30" v:mID="13" v:groupContext="shape" v:layerMember="0" transform="translate(547.9,-259.117)">
+			<title>Conector dinámico.13</title>
+			<path d="M-4.69 337.89 L-5 338.06 L-37.98 356.39" class="st6"/>
+		</g>
+		<g id="shape14-35" v:mID="14" v:groupContext="shape" transform="translate(551.288,-200.389)">
+			<title>Hoja.14</title>
+			<desc>Date</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st8"/>
+			<text x="33.56" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Date</text>		</g>
+		<g id="shape15-38" v:mID="15" v:groupContext="shape" v:layerMember="0" transform="translate(551.288,-212.175)">
+			<title>Conector dinámico.15</title>
+			<path d="M-5.36 328.2 L-5.72 328.2 L-28.35 328.2" class="st6"/>
+		</g>
+		<g id="shape16-43" v:mID="16" v:groupContext="shape" transform="translate(158.69,-277.223)">
+			<title>Hoja.16</title>
+			<desc>Item</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st10"/>
+			<text x="33.94" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Item</text>		</g>
+		<g id="shape17-46" v:mID="17" v:groupContext="shape" v:layerMember="0" transform="translate(213.237,-188.776)">
+			<title>Conector dinámico.17</title>
+			<path d="M-6.6 335.28 L-7.51 252.56" class="st11"/>
+		</g>
+		<g id="shape22-52" v:mID="22" v:groupContext="shape" transform="translate(75.0679,-239.477)">
+			<title>Hoja.22</title>
+			<desc>Date</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st10"/>
+			<text x="33.56" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Date</text>		</g>
+		<g id="shape23-55" v:mID="23" v:groupContext="shape" v:layerMember="0" transform="translate(185.69,-185.824)">
+			<title>Conector dinámico.23</title>
+			<path d="M0 335.28 L-44.41 284.84" class="st11"/>
+		</g>
+		<g id="shape24-60" v:mID="24" v:groupContext="shape" transform="translate(18.375,-183.717)">
+			<title>Hoja.24</title>
+			<desc>Price</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st10"/>
+			<text x="32.39" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Price</text>		</g>
+		<g id="shape25-63" v:mID="25" v:groupContext="shape" v:layerMember="0" transform="translate(165.065,-173.772)">
+			<title>Conector dinámico.25</title>
+			<path d="M0 335.28 L-56.37 319.03" class="st11"/>
+		</g>
+		<g id="shape26-68" v:mID="26" v:groupContext="shape" transform="translate(82.1545,-65.5942)">
+			<title>Hoja.26</title>
+			<desc>Buyer</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st10"/>
+			<text x="29.67" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Buyer</text>		</g>
+		<g id="shape27-71" v:mID="27" v:groupContext="shape" v:layerMember="0" transform="translate(183.32,-138.323)">
+			<title>Conector dinámico.27</title>
+			<path d="M0 335.28 L-32.68 367.64" class="st11"/>
+		</g>
+		<g id="shape28-76" v:mID="28" v:groupContext="shape" transform="translate(160.157,-18.375)">
+			<title>Hoja.28</title>
+			<desc>Seller</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st10"/>
+			<text x="30.44" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Seller</text>		</g>
+		<g id="shape29-79" v:mID="29" v:groupContext="shape" v:layerMember="0" transform="translate(199.843,-134.62)">
+			<title>Conector dinámico.29</title>
+			<path d="M7.09 335.28 L7.09 408.06" class="st11"/>
+		</g>
+		<g id="shape30-84" v:mID="30" v:groupContext="shape" transform="translate(304.674,-89.5395)">
+			<title>Hoja.30</title>
+			<desc>Manifester</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st12"/>
+			<text x="16.45" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Manifester</text>		</g>
+		<g id="shape31-87" v:mID="31" v:groupContext="shape" v:layerMember="0" transform="translate(429.399,-101.326)">
+			<title>Conector dinámico.31</title>
+			<path d="M0 328.2 L-25.46 328.2" class="st11"/>
+		</g>
+		<g id="shape32-92" v:mID="32" v:groupContext="shape" transform="translate(429.399,-20.7743)">
+			<title>Hoja.32</title>
+			<desc>Manifestee</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st12"/>
+			<text x="15.68" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Manifestee</text>		</g>
+		<g id="shape33-95" v:mID="33" v:groupContext="shape" v:layerMember="0" transform="translate(469.084,-81.334)">
+			<title>Conector dinámico.33</title>
+			<path d="M7.09 335.28 L7.09 352.37" class="st11"/>
+		</g>
+		<g id="shape34-100" v:mID="34" v:groupContext="shape" transform="translate(552.706,-89.5395)">
+			<title>Hoja.34</title>
+			<desc>Date</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st12"/>
+			<text x="33.56" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Date</text>		</g>
+		<g id="shape35-103" v:mID="35" v:groupContext="shape" v:layerMember="0" transform="translate(522.942,-101.326)">
+			<title>Conector dinámico.35</title>
+			<path d="M0 328.2 L24.04 328.2" class="st11"/>
+		</g>
+		<g id="shape46-108" v:mID="46" v:groupContext="shape" transform="translate(242.312,-225.254)">
+			<title>Hoja.46</title>
+			<desc>Contract</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st13"/>
+			<text x="22.67" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Contract</text>		</g>
+		<g id="shape47-111" v:mID="47" v:groupContext="shape" v:layerMember="0" transform="translate(230.305,-185.152)">
+			<title>Conector dinámico.47</title>
+			<path d="M0 335.28 L37.29 297.87" class="st11"/>
+		</g>
+		<g id="shape49-116" v:mID="49" v:groupContext="shape" transform="translate(18.375,-113.783)">
+			<title>Hoja.49</title>
+			<desc>Currency</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="46.7717" cy="316.41" width="93.55" height="37.7455"/>
+			<ellipse cx="46.7717" cy="316.41" rx="46.7717" ry="18.8728" class="st10"/>
+			<text x="20.73" y="320.61" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Currency</text>		</g>
+		<g id="shape50-119" v:mID="50" v:groupContext="shape" v:layerMember="0" transform="translate(162.836,-154.019)">
+			<title>Conector dinámico.50</title>
+			<path d="M0 336.64 L-50.38 346.95" class="st11"/>
+		</g>
+		<g id="shape51-124" v:mID="51" v:groupContext="shape" transform="translate(317.43,-288.561)">
+			<title>Hoja.51</title>
+			<desc>Action</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="32.5984" cy="321.11" width="65.2" height="28.3465"/>
+			<rect x="0" y="306.936" width="65.1969" height="28.3465" class="st12"/>
+			<text x="13.55" y="325.31" class="st9" v:langID="3082"><v:paragraph v:horizAlign="1"/><v:tabList/>Action</text>		</g>
+		<g id="shape53-127" v:mID="53" v:groupContext="shape" v:layerMember="0" transform="translate(307.18,-261.53)">
+			<title>Conector dinámico.53</title>
+			<path d="M3.87 331.57 L4.12 331.32 L28.11 308.25" class="st14"/>
+		</g>
+		<g id="shape56-132" v:mID="56" v:groupContext="shape" v:layerMember="0" transform="translate(445.373,-239.642)">
+			<title>Conector dinámico.56</title>
+			<path d="M0 335.28 L-69.15 289.52" class="st11"/>
+		</g>
+		<g id="shape57-137" v:mID="57" v:groupContext="shape" v:layerMember="0" transform="translate(433.769,-207.833)">
+			<title>Conector dinámico</title>
+			<path d="M-5.36 335.28 L-5.72 335.28 L-73.64 335.28 L-73.64 254.55" class="st14"/>
+		</g>
+	</g>
+</svg>

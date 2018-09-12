@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ContractFrames</title>
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+<div class="container">
+<div class="page-header">
+<h1>ContractFrames: Bridgind the Gap between Natural Language and Logics in Contract Law</h1>
+<p><small><font color="black">ContractFrames is a framework able to translate natural language texts about contracts into PROLEG clauses, detecting and annotating relevant events about contracts such as establishments or rescissions. </font></small></p>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+  <h4>Example of input text and expected output</h4>
+  </div>
+  <div class="panel-body">
+ 
+<p>The following text is an example of input of our framework.</p>
+ 
+  <samp><i>`person A' bought this_real_estate from `person B' at the price of 200000 dollars by contract0 on 1/January/2018.
+  But `person A' rescinded contract0 because `person A' is a minor on 1/March/2018.
+  However, this rescission was made because `person B' threatened `person A' on 1/February/2018.
+  It is because `person B' would like to sell this_real_estate to `person C' in the higher price.
+  So, `person A' rescinded rescission of contract0 on 1/April/2018.</i></samp>
+
+<p><br>The expected output in PROLEG clauses is the following:</p>
+
+<pre>
+minor(personA).
+agreement_of_purchase_contract(personA,personB,this_real_estate,200000,2018 year 01 month 01 day,contract0).
+manifestation_fact(rescission(contract0),personA,personB,2018 year 03 month 01 day).
+fact_of_duress(personB,personA,rescission(contract0),2018 year 02 month 01 day).
+manifestation_fact(rescission(rescission(contract0)),personA,personB,2018 year 04 month 01 day).
+</pre>
+
+<p><br>These facts will be added to the PROLEG fact base so the rule base can infer new knowledge. An extract of the rule base is shown below:</p>
+
+<pre>
+right_to_handing_over_the_goods(Buyer,Seller,Object,ContractID)&lt;=
+     valid_purchase_contract(Buyer,Seller,Object,Price,Tcontract,ContractID).
+
+
+valid_purchase_contract(Buyer,Seller,Object,Price,Tcontract,ContractID)&lt;=
+     agreement_of_purchase_contract(Buyer,Seller,Object,Price,Tcontract,ContractID).
+
+
+exception(
+     valid_purchase_contract(Buyer,Seller,Object,Price,Tcontract,ContractID),
+     rescission_by_minor_buyer(Buyer,Seller,ContractID,Tcontract,Trescission)).
+    
+    
+rescission_by_minor_buyer(Buyer,Seller,ContractID,Tcontract,Trescission)&lt;=
+    minor(Buyer),
+    manifestation(rescission(ContractID),Buyer,Seller,Trescission),
+    before_the_day(Tcontract,Trescission).
+
+
+manifestation(Action,Manifester,Manifestee,Taction)&lt;=
+    manifestation_fact(Action,Manifester,Manifestee,Taction).
+
+
+exception(
+    manifestation(Action,Maniester,Manifestee,Taction),
+    manifestation_by_duress(Threater,Manifester,Manifestee,Action,Taction,Tduress,Trescission)).
+
+
+manifestation_by_duress(Threater,Manifester,Manifestee,Action,Taction,Tduress,Trecission)&lt;=
+    fact_of_duress(Threater,Manifester,Action,Tduress),
+    before_the_day(Tduress,Taction),
+    manifestation(rescission(Action),Manifester,Manifestee,Trecission).
+</pre>
+
+<p><br>The reasoning process derived is depicted in the following image <br></p>
+
+<p style="text-align:center;"><input type="image" id="image" alt="reasoning" src="img/purchaseresult2.png" align="middle"/> </p>
+
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+  <h4>Contract Frames: representation and pipeline</h4>
+  </div>
+  <div class="panel-body">
+  
+  <p> The frames developed for representing the different situations that can involve a contract: </p>
+  <p style="text-align:center;"><input type="image" id="image" alt="frames" width="100%" src="img/Frames3.svg" align="middle"/> </p>
+
+<p><br>Although ContractFrames can detect additional information related to contracts, such as if one of the parts is a minor, most relevant facts are related to these three frames. ContractFrame's pipeline to extract the information from the text, populate the frames and translate them to PROLEG clauses it the following:<br></p>
+
+  <p style="text-align:center;"><input type="image" id="image" alt="pipeline" width="100%" src="img/pseudocode.svg" align="middle"/> </p>
+  
+<p><br>Besides the PROLEG clauses output, also an XML file witht he events and relevante named entities extracted for visualization purposes is generated. An example of this XML opened (with the <a href="https://gate.ac.uk/">GATE</a>) is shown below: <br></p>
+
+<p style="text-align:center;"><input type="image" id="image" alt="gate" width="90%" src="img/gate.png" align="middle"/> </p>
+
+
+<p><br>Finally, an example of the kind of paraphrasing the framework is able to handle is depicted below. The following image is a capture of the <a href="http://corenlp.run/">CoreNLP tool online demo</a>. The output of these three different phrases, since all of them provide the very same information, can be found right below.<br></p>
+
+
+<p style="text-align:center;"><input type="image" id="image" alt="corenlp" width="95%" src="img/corenlprun.png" align="middle"/> </p>
+
+
+<pre>
+agreement_of_purchase_contract(partB,partA,landL,20000,2017 year 10 month 13 day,contractC).
+</pre>
+
+  </div>
+</div>
+
+ 
+  </div>
+</div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+  <h4>Authorship</h4>
+  </div>
+  <div class="panel-body">
+    <p>This work has been submitted to a Double-blind peer review process, so no paper for citation can be provided for now. Code in <a href="https://github.com/mnavasloro/ContractFrames">GitHub</a> is freely downloadable under a <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" rel="license">GNU General Public License v3.0</a> license.</p>
+	
+	If you plan to publish a work using this resource please refer to this webpage and the <a href="https://github.com/mnavasloro/ContractFrames">GitHub repository</a> (and come back in a few months, hopefully we will have a paper to refer to!)
+	
+  </div>
+</div>
+
+
+
+<footer><hr>
+<small>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108052712-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-108052712-2');
+</script>
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  }
+})});
+</script>
+
+</footer>
+</div>
+</body>
+</html>

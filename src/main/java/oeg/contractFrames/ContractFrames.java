@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package oeg.contractFrames;
 
 import edu.stanford.nlp.coref.CorefCoreAnnotations;
@@ -43,7 +38,11 @@ import java.util.regex.Pattern;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Class with the methods to annotate English texts referring to contracts. 
+ * The output of this method is:
+ * - A set of frames derived from the text
+ * - PROLEG expressions
+ * 
  * @author mnavas
  */
 public class ContractFrames {
@@ -123,7 +122,7 @@ public class ContractFrames {
      * 2018."
      *
      * "A established a purchase contract with B to buy a land, L on April"
-     * @return Annotated String
+     * @return Annotated String in PROLEG
      *
      */
     public String annotate(String text) {
@@ -1142,6 +1141,9 @@ public class ContractFrames {
         return frame;
     }
 
+    /**
+     * Writes a PROLEG file in a file.
+     */
     private String writeProlegFile(String path) {
         String input = "";
         for(String s : logical){
@@ -1156,7 +1158,7 @@ public class ContractFrames {
         }
         // We recover the items' original names
         for(String k : refItem.keySet()){
-            input = input.replaceAll(k, refItem.get(k));
+            input = input.replaceAll(k, refItem.get(k)); 
         }
         // We recover the parts' original names
         

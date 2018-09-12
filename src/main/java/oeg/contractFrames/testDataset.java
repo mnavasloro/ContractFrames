@@ -98,6 +98,7 @@ public class testDataset {
             OutputStreamWriter w = new OutputStreamWriter(fos, "UTF-8");
             BufferedWriter bw = new BufferedWriter(w);
             bw.write(input);
+//            bw.write("\uFEFF");
             bw.flush();
             bw.close();
             return true;

@@ -329,9 +329,13 @@ public class ContractFrames {
         output = output.replaceAll("</CONTRACT></CONTRACT>", "</CONTRACT>");
         output = output.replaceAll("</MONEY></MONEY>", "</MONEY>");
 
-//        if (!writeFile("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<TEXT>\n" + output + "\n</TEXT>", "outputOR" + numindex + ".xml")) {
-//            System.err.println("ERROR WHILE SAVING AS INLINE IN outputOR" + numindex + ".xml");
-//        }
+        for(String k : refItem.keySet()){
+            output = output.replaceAll(k, refItem.get(k)); 
+        }
+        
+        if (!writeFile("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<TEXT>\n" + output + "\n</TEXT>", "outputOR" + numindex + ".xml")) {
+            System.err.println("ERROR WHILE SAVING AS INLINE IN outputOR" + numindex + ".xml");
+        }
 
         String value = "";
         // We check the relations:
@@ -715,6 +719,24 @@ public class ContractFrames {
             while (m.find()) {
                 output = output.replaceFirst(m.group(0), "");
                 logical.add("minor(" + m.group(1) + ").\n");
+            }
+            p = TokenSequencePattern.compile("/because/? ([ { tag:\"NN\"} | {tag:\"NNP\"} ]) [ { lemma:\"be\" } ] [ { word:\"under\" } ]? ([ { ner:\"NUMBER\" } ])");
+            m = p.getMatcher(sentence.get(CoreAnnotations.TokensAnnotation.class));
+            while (m.find()) {
+                CoreMap age = m.mergeGroup(2);
+                for (CoreLabel token : age.get(CoreAnnotations.TokensAnnotation.class)) {
+                    String normalized = token.get(CoreAnnotations.NormalizedNamedEntityTagAnnotation.class);
+                    pText = Pattern.compile("<(\\d+)");
+                    mText = pText.matcher(normalized);
+                    if (mText.find()) {
+                        int ageint = Integer.parseInt(mText.group(1));
+                        if(ageint < 20){
+                            logical.add("minor(" + m.group(1) + ").\n");
+                        }
+                        break;
+                    }
+                }
+                output = output.replaceFirst(m.group(0), "");
             }
             /* We replace contract synonyms for contract */
             p = TokenSequencePattern.compile("([ { lemma:\"agreement\" } ])");

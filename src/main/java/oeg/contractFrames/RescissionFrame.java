@@ -1,7 +1,10 @@
 package oeg.contractFrames;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static oeg.contractFrames.PurchaseFrame.CF;
+import static oeg.contractFrames.PurchaseFrame.DATA;
 
 /**
  * Class to represent the recission of a contract.
@@ -23,6 +26,30 @@ public class RescissionFrame {
         return (manifester.isEmpty() && manifestee.isEmpty() && date.isEmpty() && action.isEmpty() && duress.isEmpty());
     }
     
+    public static String CF = "https://mnavasloro.github.io/ContractFrames/";
+    public static String DATA = "https://mnavasloro.github.io/ContractFrames/data/";
+    public static String MCO = "http://purl.oclc.org/NET/mco-core/";
+    public String toRDF()
+    {
+        String rdf="";
+        UUID uuid = UUID.randomUUID();
+        String agp = DATA+uuid;
+        
+       rdf+="<"+ agp +"> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <"+CF+"Manifestation> . \n" ;
+       rdf+="<"+ agp +"> <"+ CF+"manifester" +" > \""+manifester+"\" . \n" ;
+       rdf+="<"+ agp +"> <"+ CF+"manifestee" +" > \""+manifestee+"\" . \n" ;
+       rdf+="<"+ agp +"> <"+ CF+"rescission" +" > \""+action+"\" . \n" ;
+       rdf+="<"+ agp +"> <http://purl.org/dc/terms/date> \""+convertDate(date) + "\" . \n" ;
+        if(!duress.isEmpty()){
+            String dur = DATA+uuid;
+            rdf+="<"+ dur +"> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <"+CF+"Duress> . \n" ;
+            rdf+="<"+ dur +"> <"+ CF+"manifester" +" > \""+duress.getManifester()+"\" . \n" ;
+            rdf+="<"+ dur +"> <"+ CF+"manifestee" +" > \""+duress.getManifestee() +"\" . \n" ;
+            rdf+="<"+ dur +"> <http://purl.org/dc/terms/date> \""+convertDate(duress.date) + "\" . \n" ;
+            rdf+="<"+ agp +"> <"+ CF+"rescission" +" > \""+action+"\" . \n" ;
+        }
+        return rdf;
+    }
     public String toProleg() {
         String outp = "manifestation_fact(rescission(" + action + ")," + manifester + "," + manifestee + "," + convertDate(date) + ").\n";
         if(!duress.isEmpty()){

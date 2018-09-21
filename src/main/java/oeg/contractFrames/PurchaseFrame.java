@@ -1,5 +1,6 @@
 package oeg.contractFrames;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,6 +34,29 @@ public class PurchaseFrame {
         String outp = "agreement_of_purchase_contract(" + buyer + "," + seller + "," + item + "," + pr + "," + convertDate(date) + "," + contract + ").\n";
         return outp;
     }
+
+    public static String CF = "https://mnavasloro.github.io/ContractFrames/";
+    public static String DATA = "https://mnavasloro.github.io/ContractFrames/data/";
+    public static String MCO = "http://purl.oclc.org/NET/mco-core/";
+    public String toRDF()
+    {
+        String pr = price;
+        if(price.isEmpty()){
+            pr = "price";
+        }
+        String rdf="";
+        UUID uuid = UUID.randomUUID();
+        String agp = DATA+uuid;
+        rdf+="<"+ agp +"> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <"+CF+"Agreement> . \n" ;
+        rdf+="<"+ agp +"> <" +MCO+"party"+ "> \""+buyer + "\" . \n" ;
+        rdf+="<"+ agp +"> <" +MCO+"entity"+ "> \""+item + "\" . \n" ;
+        rdf+="<"+ agp +"> <" +CF+"price"+ "> \""+pr + "\" . \n" ;
+        rdf+="<"+ agp +"> <" +CF+"relatedContract"+ "> \""+pr + "\" . \n" ;
+        rdf+="<"+ agp +"> <http://purl.org/dc/terms/date> \""+convertDate(date) + "\" . \n" ;
+        
+        return rdf;
+    }
+    
     
     public String convertDate(String input){
         String outp = "";

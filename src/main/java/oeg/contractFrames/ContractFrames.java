@@ -49,6 +49,8 @@ public class ContractFrames {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(ContractFrames.class);
 
+    static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(ContractFrames.class);
+    
     StanfordCoreNLP pipeline;
     PrintWriter out;
 
@@ -96,7 +98,7 @@ public class ContractFrames {
         properties.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,tokensregexdemo");
         properties.setProperty("customAnnotatorClass.tokensregexdemo", "edu.stanford.nlp.pipeline.TokensRegexAnnotator");
         properties.setProperty("tokensregexdemo.rules", rules);
-        System.out.println(properties);
+        logger.info(properties);
 
         /* Initialization of CoreNLP pipeline */
         pipeline = new StanfordCoreNLP(properties);
@@ -107,6 +109,12 @@ public class ContractFrames {
         preprocessPipeline = new StanfordCoreNLP(propertiesPreproc);
     }
 
+    
+    public String annotate(String text) {
+        return annotate(text, "proleg");
+    }
+
+    
     //TODO: change output to string, so it returns the annotated string
     /**
      * Annotates a String text
@@ -127,7 +135,7 @@ public class ContractFrames {
      * @return Annotated String in PROLEG
      *
      */
-    public String annotate(String text) {
+    public String annotate(String text, String format) {
 
         String output = text;
         output = preprocessInput(output);
@@ -245,7 +253,8 @@ public class ContractFrames {
                 if (timex == null && previous != null) {
                     previous = timex;
                 }
-            out.println("token: word=" + word + ",  \t lemma=" + lemma + ",  \t pos=" + pos + ",  \t ne=" + ne + ",  \t normalized=" + normalized + ",  \t contractEv=" + contractEvent + ",  \t date=" + date);
+ //           out.println("token: word=" + word + ",  \t lemma=" + lemma + ",  \t pos=" + pos + ",  \t ne=" + ne + ",  \t normalized=" + normalized + ",  \t contractEv=" + contractEvent + ",  \t date=" + date);
+            logger.info("token: word=" + word + ",  \t lemma=" + lemma + ",  \t pos=" + pos + ",  \t ne=" + ne + ",  \t normalized=" + normalized + ",  \t contractEv=" + contractEvent + ",  \t date=" + date);
             
             }
              if(!frameBuy.isEmpty()){
@@ -336,7 +345,7 @@ public class ContractFrames {
         }
         
         if (!writeFile("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<TEXT>\n" + output + "\n</TEXT>", "outputOR" + numindex + ".xml")) {
-            System.err.println("ERROR WHILE SAVING AS INLINE IN outputOR" + numindex + ".xml");
+            logger.error("ERROR WHILE SAVING AS INLINE IN outputOR" + numindex + ".xml");
         }
 
         String value = "";
@@ -366,6 +375,9 @@ public class ContractFrames {
 
         }
 
+        if (Main.format.equals("rdf"))
+        output = writeRDFFile("rdf" + numindex + ".txt");
+            else
         output = writeProlegFile("proleg" + numindex + ".txt");
 
         numindex++;
@@ -1163,6 +1175,42 @@ public class ContractFrames {
         /* Date and price will be done later */
         
         return frame;
+    }
+
+    private String writeRDFFile(String path) {
+        String input = "";
+        for(String s : logical){
+            input = input + s;
+        }
+        for(PurchaseFrame f : framesPurchase){
+            input = input + f.toRDF();
+        }
+        for(RescissionFrame f : framesRescission){
+            f = completeRescission(framesPurchase, f);
+            input = input + f.toRDF();
+        }
+        // We recover the items' original names
+        for(String k : refItem.keySet()){
+            input = input.replaceAll(k, refItem.get(k)); 
+        }
+        // We recover the parts' original names
+        
+//        input = input.replaceAll("Land([A-Z])", "$1");
+//        input = input.replaceAll("Part([A-Z])", "$1");
+//        input = input.replaceAll("Person([A-Z])", "$1");
+        
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            OutputStreamWriter w = new OutputStreamWriter(fos, "UTF-8");
+            BufferedWriter bw = new BufferedWriter(w);
+            bw.write(input);
+            bw.flush();
+            bw.close();
+            logger.info(input);
+        } catch (Exception ex) {
+            Logger.getLogger(ContractFrames.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return input;
     }
 
     /**

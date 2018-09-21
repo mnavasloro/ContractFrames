@@ -26,26 +26,44 @@ import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 
 /**
  * Main class of the Contract Frames demo application.
+ *
  * @author vroddon
  */
 public class Main {
 
     /// El logger se inicializa más tarde porque a estas alturas todavía no sabemos el nombre del archivo de logs.
     static Logger logger = null;
+    static boolean logs = false;
+    static String format = "proleg";
 
     public static void main(String[] args) {
 
         init(args);
-        
+
         if (args.length != 0) {
             String res = parsear(args);
-            if (!res.isEmpty())
+            if (!res.isEmpty()) {
                 System.out.println(res);
+            }
         }
     }
-    
-    public static String parsear(String[] args)
-    {
+
+    public static void init(String[] args) {
+        logs = Arrays.asList(args).contains("-logs");
+        initLogger(logs);
+
+        //Welcome message
+        try {
+            MavenXpp3Reader reader = new MavenXpp3Reader();
+            Model model = reader.read(new FileReader("pom.xml"));
+            String welcome = model.getArtifactId() + " " + model.getVersion() + "\n-----------------------------------------------------\n";
+            logger.info(welcome);
+        } catch (Exception e) {
+        }
+
+    }
+
+    public static String parsear(String[] args) {
         ///Respuesta
         StringBuilder res = new StringBuilder();
         CommandLineParser parser = null;
@@ -53,62 +71,48 @@ public class Main {
         try {
 
             Options options = new Options();
-            options.addOption("help", false, "shows help (Help)");
-            options.addOption("nologs", false, "disables logs");           
-            options.addOption("logs", false, "enables logs");           
-            options.addOption("parse", true, "parses a file ");
+            options.addOption("nologs", false, "OPTION to disables logs");
+            options.addOption("logs", false, "OPTION to enable logs");
+            options.addOption("format", true, "OPTION to choose the format. (proleg), rdf");
+            options.addOption("parse", true, "COMMAND to parse a file ");
+            options.addOption("help", false, "COMMAND to show help (Help)");
             parser = new BasicParser();
             cmd = parser.parse(options, args);
-            
-            if (cmd.hasOption("help")) {
+
+            if (cmd.hasOption("help") || args.length == 0) {
                 new HelpFormatter().printHelp(Main.class.getCanonicalName(), options);
+            }
+            if (cmd.hasOption("format")) {
+                Main.format = cmd.getOptionValue("format");
+                
             }
             if (cmd.hasOption("parse")) {
                 String filename = cmd.getOptionValue("parse");
-                logger.info("Trying to parse the file "+ filename);
+                logger.info("Trying to parse the file " + filename);
                 parse(filename);
             }
-            
-        }catch(Exception e)
-        {
-            
+
+        } catch (Exception e) {
+
         }
-        
+
         return res.toString();
     }
 
-    public static void parse(String filename)
-    {
-        String txt="";
+    public static void parse(String filename) {
+       String res = "";
+        String txt = "";
         try {
-            txt = new String(Files.readAllBytes(Paths.get(filename))); 
-        }catch(Exception e)
-        {
+            txt = new String(Files.readAllBytes(Paths.get(filename)));
+        } catch (Exception e) {
             logger.error("error opening file");
-        }
-        
-        ContractFrames cf = new ContractFrames();
-        String output = cf.annotate(txt);
-        System.out.println("--------------------\nOUTPUT\n--------------------\n\n");
-        System.out.println(output);
-    }
-    
-    public static void init(String[] args) {
-        if (Arrays.asList(args).contains("-logs")) {
-            initLogger(true);
-        } else {
-            initLogger(false);
+            return;
         }
 
-       //Welcome message
-       try {
-            MavenXpp3Reader reader = new MavenXpp3Reader();
-            Model model = reader.read(new FileReader("pom.xml"));
-            String welcome =  model.getArtifactId() + " " +model.getVersion()+"\n-----------------------------------------------------\n";
-            logger.info(welcome);
-        } catch (Exception e) {
-        }
-         
+        ContractFrames cf = new ContractFrames();
+        String output = cf.annotate(txt, Main.format);
+        logger.info("--------------------\nOUTPUT\n--------------------\n\n");
+        res+= output;
     }
 
     public static void initLogger(boolean logs) {
@@ -117,8 +121,7 @@ public class Main {
         } else {
             initLoggerDisabled();
         }
-        
-        
+
     }
 
     /**
@@ -135,8 +138,11 @@ public class Main {
         }
         //Disable stanford logs
         RedwoodConfiguration.current().clear().apply();
-//        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);        
-        
+        Logger root = Logger.getRootLogger();
+        ErrorCollector ec = new ErrorCollector();
+        root.addAppender(ec);
+        logger.setLevel(Level.ERROR);
+
     }
 
     /**
@@ -182,12 +188,12 @@ public class Main {
             appenderfile.activateOptions();
         } catch (Exception e) {
         }
-        
+
         root.addAppender(appenderfile);
-        
+
         ErrorCollector ec = new ErrorCollector();
         root.addAppender(ec);
-        
+
         logger = Logger.getLogger(Main.class);
     }
 

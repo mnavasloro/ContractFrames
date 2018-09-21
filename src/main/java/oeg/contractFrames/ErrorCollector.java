@@ -55,7 +55,7 @@ public class ErrorCollector extends AppenderSkeleton {
                     JOptionPane.showMessageDialog(null, s, "Info", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            System.out.println(ANSI_RED_BRIGHT + "[WARN]" + ANSI_RESET + " " + event.getMessage());
+            System.err.println(ANSI_RED_BRIGHT + "[WARN]" + ANSI_RESET + " " + event.getMessage());
             
         }
         if (slevel.equals("INFO"))
@@ -71,30 +71,25 @@ public class ErrorCollector extends AppenderSkeleton {
                 }
             }
         }
+  //      if (Main.logs)
+
         if (slevel.equals("WARN"))
         {
             String texto = event.getRenderedMessage();
             if (texto==null)
             {
-                System.err.println("Warning nulo en InspecteeErrorCollector");
+                System.err.println("Warning nulo en ErrorCollector");
                 return;
-            }
-            else if (texto.contains("nodata"))
-            {
-                events.add(event);
-            }
-            else if (texto.contains("nochannel"))
-            {
-                events.add(event);
             }
             else
             {
-                String str = "Warning desconocido en InspecteeErrorCollector ";
+                String str = "Warning desconocido en ErrorCollector ";
                 if (event!=null && event.getMessage()!=null)
                     str+=event.getMessage();
          //       System.err.println(str);
             }
-            System.out.println(ANSI_RED + "[WARN]" + ANSI_RESET + " " + event.getMessage());
+            if (Main.logs)
+                System.out.println(ANSI_RED + "[WARN]" + ANSI_RESET + " " + event.getMessage());
         }
 
     }

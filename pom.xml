@@ -13,6 +13,12 @@
             <version>1.2.3</version>
             <type>jar</type>
         </dependency>       
+<!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+<dependency>
+    <groupId>org.fusesource.jansi</groupId>
+    <artifactId>jansi</artifactId>
+    <version>1.17.1</version>
+</dependency>
 
         <dependency>
             <groupId>log4j</groupId>
@@ -51,6 +57,11 @@
         <version>3.9.1</version>
         <classifier>models</classifier>
     </dependency>
+<dependency>
+  <groupId>org.apache.maven</groupId>
+  <artifactId>maven-model</artifactId>
+  <version>3.3.9</version>
+</dependency>	
     </dependencies>
     <build>    
         <plugins>
@@ -59,7 +70,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>oeg.testDataset</mainClass>
+                            <mainClass>oeg.contractFrames.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -83,7 +94,7 @@
                         <phase>install</phase>
                         <configuration>
                             <tasks>
-                                <copy file="target/contractFrames-${project.version}-jar-with-dependencies.jar" tofile="lynx.jar"/>
+                                <copy file="target/contractFrames-${project.version}-jar-with-dependencies.jar" tofile="contractf.jar"/>
                             </tasks>
                         </configuration>
                         <goals>
@@ -93,6 +104,7 @@
                 </executions>
             </plugin>                       
         </plugins>
+		
     </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

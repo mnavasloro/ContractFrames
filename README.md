@@ -32,14 +32,15 @@ usage: oeg.contractFrames.Main
 
 To produced PROLEG from a text file talking about a contract (in English):
 ```shell
-$ java -jar contractf.jar -parse
+$ java -jar contractf.jar -parse sample.txt
 ```
 
 To produced RDF from a text file talking about a contract (in English):
 ```shell
-$ java -jar contractf.jar -parse
+$ java -jar contractf.jar -format rdf -parse sample.txt
 ```
 
+Logs can be enabled/disabled with the commands -nologs or -nlogs. There will be a text file named ./logs/ContractFrames.txt with the logs
 
 
 

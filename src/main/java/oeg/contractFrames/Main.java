@@ -1,5 +1,7 @@
 package oeg.contractFrames;
 
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.logging.RedwoodConfiguration;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -57,16 +59,13 @@ public class Main {
             options.addOption("parse", true, "parses a file ");
             parser = new BasicParser();
             cmd = parser.parse(options, args);
-
-            //PARSEAMOS EL PARÁMETRO DE LOGS...
-            if (!cmd.hasOption("logs")) {
-                Main.initLoggerDisabled();
-            }
+            
             if (cmd.hasOption("help")) {
                 new HelpFormatter().printHelp(Main.class.getCanonicalName(), options);
             }
             if (cmd.hasOption("parse")) {
                 String filename = cmd.getOptionValue("parse");
+                logger.info("Trying to parse the file "+ filename);
                 parse(filename);
             }
             
@@ -95,10 +94,10 @@ public class Main {
     }
     
     public static void init(String[] args) {
-        if (Arrays.asList(args).contains("-nologs")) {
-            initLogger(false);
-        } else {
+        if (Arrays.asList(args).contains("-logs")) {
             initLogger(true);
+        } else {
+            initLogger(false);
         }
 
        //Welcome message
@@ -134,6 +133,10 @@ public class Main {
         for (Logger log : loggers) {
             log.setLevel(Level.OFF);
         }
+        //Disable stanford logs
+        RedwoodConfiguration.current().clear().apply();
+//        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);        
+        
     }
 
     /**
